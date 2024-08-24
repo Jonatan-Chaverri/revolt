@@ -23,12 +23,12 @@ mod game_system {
             let mut game = Game {
                 id: game_id,
                 player_1_address: get_caller_address(),
-                player_2_address: null,
-                player_3_address: null,
-                player_4_address: null,
+                player_2_address: Zeroable::zero(),
+                player_3_address: Zeroable::zero(),
+                player_4_address: Zeroable::zero(),
                 map_id: 1,
                 state: true,
-                winner: null,
+                winner: Zeroable::zero(),
             };
             store.set_game(game);
 
@@ -39,16 +39,16 @@ mod game_system {
             let mut store: Store = StoreTrait::new(world);
 
             let mut game = store.get_game(game_id);
-            assert(game.state, "Game is not available");
+            assert(game.state, 'Game is not available');
 
-            if game.player_2_address == null {
+            if game.player_2_address.is_zero() {
                 game.player_2_address = get_caller_address();
-            } else if game.player_3_address == null {
+            } else if game.player_3_address.is_zero() {
                 game.player_3_address = get_caller_address();
-            } else if game.player_4_address == null {
+            } else if game.player_4_address.is_zero() {
                 game.player_4_address = get_caller_address();
             } else {
-                assert(false, "Game is full");
+                assert(false, 'Game is full');
             }
 
             store.set_game(game);
