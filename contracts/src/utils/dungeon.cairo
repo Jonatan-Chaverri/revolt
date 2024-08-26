@@ -1,71 +1,60 @@
 use revolt::models::tile::{Tile, TileValue};
 use revolt::models::map::Map;
 
-fn get_dungeon_1() -> Array<Array<u8>> {
-    array![
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,1,1,1,0,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,0,0,0,0],
-        array![0,0,0,0,0,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,0,0,0,0],
-        array![0,0,0,0,0,1,1,1,1,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,0,0,0,0],
-        array![0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,0,0,0,0],
-        array![0,1,1,1,0,1,1,1,0,0,0,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,0,1,1,1,0,0,0,0,0],
-        array![0,1,0,1,0,1,1,1,0,0,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,0,0,0,0],
-        array![0,1,0,1,0,1,1,1,0,0,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0],
-        array![0,1,0,0,0,1,1,1,0,0,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,1,0],
-        array![0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,1,0],
-        array![0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0],
-        array![0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        array![0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    ]
+#[derive(Copy, Drop)]
+struct MapEntry {
+    value: u8,
+    reps: u8
 }
 
-fn is_wall(map: @Array<Array<u8>>, x: u8, y: u8) -> bool {
-    let rows = map.len();
-    let cols = map[0].len();
-    let result = if *map.at(y.into()).at(x.into()) == 1 {
-        false
-    } else if (x+1).into() < cols && *map.at(y.into()).at((x+1).into()) == 1 {
-        true
-    } else if x >= 1 && *map.at(y.into()).at((x-1).into()) == 1 {
-        true
-    } else if (y+1).into() < rows && *map.at((y+1).into()).at(x.into()) == 1 {
-        true
-    } else if y >= 1 && *map.at((y-1).into()).at(x.into()) == 1 {
-        true
-    } else {
-        false
-    };
-    result
+fn map_entry(value: u8, reps: u8) -> MapEntry {
+    MapEntry {
+        value: value,
+        reps: reps
+    }
 }
+
+fn get_dungeon_1() -> (Array<Array<MapEntry>>, u8, u8) {
+    (array![
+        array![map_entry(1, 35)],
+        array![
+            map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 18), 
+            map_entry(1, 7), map_entry(0, 7), map_entry(1, 1)
+        ],
+        array![
+            map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 1), 
+            map_entry(1, 3), map_entry(0, 7), map_entry(1, 1), map_entry(0, 18), 
+            map_entry(1, 1), map_entry(0, 5), map_entry(1, 1)
+        ],
+        array![
+            map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 1), 
+            map_entry(1, 3), map_entry(0, 7), map_entry(1, 1), map_entry(0, 27), 
+            map_entry(1, 1)
+        ],
+        array![
+            map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 1), 
+            map_entry(1, 3), map_entry(0, 1), map_entry(1, 7), map_entry(0, 1), 
+            map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), 
+            map_entry(1, 9), map_entry(0, 7), map_entry(1, 1)
+        ],
+        array![
+            map_entry(1, 1), map_entry(0, 8), map_entry(1, 1), map_entry(0, 16), 
+            map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 8), 
+            map_entry(1, 1)
+        ],
+        array![
+            map_entry(1, 5), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), 
+            map_entry(1, 1), map_entry(0, 1), map_entry(1, 1), map_entry(0, 18), 
+            map_entry(1, 1), map_entry(0, 9), map_entry(1, 1)
+        ]
+    ], 7, 35)
+}
+
 
 pub fn create_dungeon(map_id: u32) -> Map {
     assert (map_id == 1, 'Only map_id 1 is supported');
-    let dungeon = get_dungeon_1();
+    let (_, cols, rows) = get_dungeon_1();
 
-    let rows = dungeon.len();
-    let cols = dungeon[0].len();
     Map {
         id: map_id,
         rows: rows.try_into().unwrap(),
@@ -77,33 +66,46 @@ pub fn get_dungeon_walls(map_id: u32) -> Array<Tile> {
     let mut result: Array<Tile> = array![];
 
     assert (map_id == 1, 'Only map_id 1 is supported');
-    let dungeon = get_dungeon_1();
+    let (dungeon, _, _) = get_dungeon_1();
 
-    let rows = dungeon.len();
-    let cols = dungeon[0].len();
-
+    // This just tracks the real mapEntry data inside the dungeon array
     let mut x = 0_u8;
     let mut y = 0_u8;
+
+    // This is to track the position of the tile in the result array
+    let mut col_index = 0_u8;
     loop {
-        if y.into() >= rows {
+        if y.into() >= dungeon.len() {
             break;
         }
         loop {
-            if x.into() >= cols {
+            if x.into() >= dungeon.at(y.into()).len() {
                 break;
             }
-            if is_wall(@dungeon, x, y) {
-                result.append(
-                    Tile {
-                        map_id: map_id,
-                        pos_x: x,
-                        pos_y: y,
-                        value: TileValue::Wall,
+            let map_entry = *dungeon.at(y.into()).at(x.into());
+            if map_entry.value == 1 {
+                let mut inserted_tiles = 0;
+                loop{
+                    if inserted_tiles == map_entry.reps {
+                        break;
                     }
-                );
+                    result.append(
+                        Tile {
+                            map_id: map_id,
+                            pos_x: col_index,
+                            pos_y: y,
+                            value: TileValue::Wall,
+                        }
+                    );
+                    inserted_tiles += 1;
+                    col_index += 1;
+                };
+            } else {
+                col_index += map_entry.reps;
             }
             x += 1;
         };
+        col_index = 0;
         x = 0;
         y += 1;
     };
