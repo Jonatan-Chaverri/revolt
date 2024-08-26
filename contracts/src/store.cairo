@@ -2,6 +2,9 @@ use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 use revolt::models::tile::Tile;
 use revolt::models::map::Map;
 use revolt::models::game::Game;
+use revolt::models::player::Player;
+
+use starknet::ContractAddress;
 
 #[derive(Drop)]
 struct Store {
@@ -37,5 +40,13 @@ impl StoreImpl of StoreTrait {
 
     fn set_game(ref self: Store, game: Game) {
         set!(self.world, (game));
+    }
+
+    fn get_player(ref self: Store, game_id: u32, player_address: ContractAddress) -> Player {
+        get!(self.world, (game_id, player_address), (Player))
+    }
+
+    fn set_player(ref self: Store, player: Player) {
+        set!(self.world, (player));
     }
 }

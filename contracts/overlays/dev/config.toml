@@ -1,0 +1,4 @@
+tag = "revolt-config_system"
+writes = [
+    "ns:revolt"
+]

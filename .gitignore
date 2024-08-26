@@ -1,3 +1,4 @@
 *target
 *manifests
 *.vscode
+*.DS_Store

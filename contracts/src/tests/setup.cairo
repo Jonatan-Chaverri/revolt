@@ -4,6 +4,8 @@ mod setup {
     use revolt::systems::config_system::config_system;
     use revolt::models::tile::tile;
     use revolt::models::map::map;
+    use revolt::models::game::game;
+    use revolt::models::player::player;
     use revolt::systems::game_system::{game_system, IGameSystemDispatcher};
 
     use starknet::ContractAddress;
@@ -26,8 +28,10 @@ mod setup {
 
     fn spawn_game() -> (IWorldDispatcher, Systems) {
         let mut models = array![
+            game::TEST_CLASS_HASH,
             tile::TEST_CLASS_HASH,
             map::TEST_CLASS_HASH,
+            player::TEST_CLASS_HASH,
         ];
         let world = spawn_test_world(["revolt"].span(), models.span());
         let systems = Systems {
