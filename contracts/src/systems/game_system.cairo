@@ -115,8 +115,10 @@ mod game_system {
                 _ => {assert(false, 'Invalid direction');}
             }
 
-            let is_wall = self.is_movement_valid(ref store, @game, player.pos_x, player.pos_y, get_caller_address());
-            if !is_wall {
+            let is_valid_mov = self.is_movement_valid(
+                ref store, @game, player.pos_x, player.pos_y, get_caller_address()
+            );
+            if is_valid_mov {
                 store.set_player(player);
             }
         }
