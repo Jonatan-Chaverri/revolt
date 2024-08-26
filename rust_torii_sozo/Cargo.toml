@@ -1,0 +1,10 @@
+[package]
+name = "rust_torii_sozo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+sozo-ops = { git = "https://github.com/dojoengine/dojo", tag = "v1.0.0-alpha.7" }
+
+[patch.crates-io]
+starknet-core = { git = "https://github.com/kariy/starknet-rs", branch = "dojo-patch" }
