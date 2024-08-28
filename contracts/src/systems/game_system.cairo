@@ -106,6 +106,9 @@ mod game_system {
                 Direction::Right => { player.pos_x += 1; },
                 _ => { assert(false, 'Invalid direction'); }
             }
+            if player.freeze > 0 {
+                player.freeze -= 1;
+            }
 
             let is_valid_mov = self
                 .is_movement_valid(
@@ -116,7 +119,26 @@ mod game_system {
             }
         }
 
-        fn attack(ref world: IWorldDispatcher, game_id: u32) {}
+        fn attack(ref world: IWorldDispatcher, game_id: u32) {
+            let mut store: Store = StoreTrait::new(world);
+
+            let mut game = store.get_game(game_id);
+            assert(game.state, 'Game is not available');
+
+            let mut player = store.get_player(game_id, get_caller_address());
+            assert(player.state, 'Player is not available');
+
+            assert(player.freeze > 0, 'Player is frozen');
+            
+            self.attack_player(ref store, game_id, ref player, game.player_1_address);
+            self.attack_player(ref store, game_id, ref player, game.player_2_address);
+            self.attack_player(ref store, game_id, ref player, game.player_3_address);
+            self.attack_player(ref store, game_id, ref player, game.player_4_address);
+
+            let mut player_after = store.get_player(game_id, get_caller_address());
+            player_after.freeze += 5;
+            store.set_player(player_after);
+        }
     }
 
     #[generate_trait]
@@ -132,25 +154,31 @@ mod game_system {
             let mut tile = store.get_tile(*game.map_id, pos_x, pos_y);
             let is_wall = tile.value == TileValue::Wall;
 
-            let (p1_pos_x, p1_pos_y) = self
-                .get_player_position(ref store, *game.id, *game.player_1_address);
-            let (p2_pos_x, p2_pos_y) = self
-                .get_player_position(ref store, *game.id, *game.player_2_address);
-            let (p3_pos_x, p3_pos_y) = self
-                .get_player_position(ref store, *game.id, *game.player_3_address);
-            let (p4_pos_x, p4_pos_y) = self
-                .get_player_position(ref store, *game.id, *game.player_4_address);
+            // let (p1_pos_x, p1_pos_y) = self
+            //     .get_player_position(ref store, *game.id, *game.player_1_address);
+            // let (p2_pos_x, p2_pos_y) = self
+            //     .get_player_position(ref store, *game.id, *game.player_2_address);
+            // let (p3_pos_x, p3_pos_y) = self
+            //     .get_player_position(ref store, *game.id, *game.player_3_address);
+            // let (p4_pos_x, p4_pos_y) = self
+            //     .get_player_position(ref store, *game.id, *game.player_4_address);
+
+            // let result = if is_wall {
+            //     false
+            // } else if *game.player_1_address != caller && p1_pos_x == pos_x && p1_pos_y == pos_y {
+            //     false
+            // } else if *game.player_2_address != caller && p2_pos_x == pos_x && p2_pos_y == pos_y {
+            //     false
+            // } else if *game.player_3_address != caller && p3_pos_x == pos_x && p3_pos_y == pos_y {
+            //     false
+            // } else if *game.player_4_address != caller && p4_pos_x == pos_x && p4_pos_y == pos_y {
+            //     false
+            // } else {
+            //     true
+            // };
 
             let result = if is_wall {
-                false
-            } else if *game.player_1_address != caller && p1_pos_x == pos_x && p1_pos_y == pos_y {
-                false
-            } else if *game.player_2_address != caller && p2_pos_x == pos_x && p2_pos_y == pos_y {
-                false
-            } else if *game.player_3_address != caller && p3_pos_x == pos_x && p3_pos_y == pos_y {
-                false
-            } else if *game.player_4_address != caller && p4_pos_x == pos_x && p4_pos_y == pos_y {
-                false
+                     false
             } else {
                 true
             };
@@ -162,6 +190,47 @@ mod game_system {
         ) -> (u8, u8) {
             let player = store.get_player(game_id, player_address);
             (player.pos_x, player.pos_y)
+        }
+
+        fn attack_player(
+            self: @ContractState, ref store: Store, game_id: u32, ref current_player: Player, player_address: ContractAddress
+        ) {
+            let mut player = store.get_player(game_id, player_address);
+            
+            if current_player.player_address != player_address && 
+                self.player_in_attack_range(current_player.pos_x, current_player.pos_y, player.pos_x, player.pos_y)
+            {
+                if player.health <= 10 {
+                    player.state = false;
+                    player.health = 0;
+                } else {
+                    player.health -= 10;
+                }
+                current_player.score += 10;
+                store.set_player(player);
+                store.set_player(current_player);
+            }
+        }
+
+        fn player_in_attack_range(
+            self: @ContractState, attacker_x: u8, attacker_y: u8, player_x: u8, player_y: u8
+        ) -> bool {
+            let mut result_x = false;
+            let mut result_y = false;
+
+            if attacker_x >= player_x {
+                result_x = attacker_x - player_x <= 1;
+            } else {
+                result_x = player_x - attacker_x <= 1;
+            }
+
+            if attacker_y >= player_y {
+                result_y = attacker_y - player_y <= 1;
+            } else {
+                result_y = player_y - attacker_y <= 1;
+            }
+
+            result_x && result_y
         }
     }
 }

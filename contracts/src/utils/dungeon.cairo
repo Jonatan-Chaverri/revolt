@@ -272,7 +272,7 @@ fn get_dungeon_1() -> (Array<Array<MapEntry>>, u8, u8) {
 
 pub fn create_dungeon(map_id: u32) -> Map {
     assert(map_id == 1, 'Only map_id 1 is supported');
-    let (_, cols, rows) = get_dungeon_1();
+    let (_, rows, cols) = get_dungeon_1();
 
     Map { id: map_id, rows: rows.try_into().unwrap(), cols: cols.try_into().unwrap(), }
 }
