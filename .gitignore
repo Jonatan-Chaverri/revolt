@@ -2,3 +2,4 @@
 *manifests
 *.vscode
 *.DS_Store
+indexer.db

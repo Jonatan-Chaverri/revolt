@@ -12,6 +12,8 @@ spawn = "./scripts/spawn.sh"
 move = "./scripts/move.sh"
 katana = "katana --disable-fee  --allowed-origins \"*\""
 torii = "torii --world 0x6dc9d3d55f4cace6dfda9dd3478ec7ab60a1637149f8ff430efcd313635492 --database indexer.db --allowed-origins \"*\""
+torii-no-db = "torii --world 0x6dc9d3d55f4cace6dfda9dd3478ec7ab60a1637149f8ff430efcd313635492 --allowed-origins \"*\""
+
 
 [dependencies]
 dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.0.0-alpha.6" }
