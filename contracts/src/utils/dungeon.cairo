@@ -76,7 +76,7 @@ fn get_dungeon_1() -> (Array<Array<MapEntry>>, u8, u8) {
             // //     map_entry(1, 1), map_entry(0, 3), map_entry(1, 1), map_entry(0, 9), map_entry(1, 3), map_entry(0, 1), map_entry(1, 1), map_entry(0, 15), map_entry(1, 1)
             // // ],
             array![map_entry(1, 35)]
-        ], 21, 35)
+        ], 19, 35)
 }
 
 
