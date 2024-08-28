@@ -15,112 +15,68 @@ fn map_entry(value: u8, reps: u8) -> MapEntry {
 }
 
 fn get_dungeon_1() -> (Array<Array<MapEntry>>, u8, u8) {
-    (array![
-        array![map_entry(1, 35)],
+    (
         array![
-            map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 18), 
-            map_entry(1, 7), map_entry(0, 7), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 1), 
-            map_entry(1, 3), map_entry(0, 7), map_entry(1, 1), map_entry(0, 18), 
-            map_entry(1, 1), map_entry(0, 5), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 1), 
-            map_entry(1, 3), map_entry(0, 7), map_entry(1, 1), map_entry(0, 27), 
-            map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 1), 
-            map_entry(1, 3), map_entry(0, 1), map_entry(1, 7), map_entry(0, 1), 
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), 
-            map_entry(1, 9), map_entry(0, 7), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 8), map_entry(1, 1), map_entry(0, 16), 
-            map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 8), 
-            map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 5), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), 
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 1), map_entry(0, 18), 
-            map_entry(1, 1), map_entry(0, 9), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 6), map_entry(1, 3), map_entry(0, 1), 
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 1), map_entry(0, 18), 
-            map_entry(1, 1), map_entry(0, 9), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 8), map_entry(0, 1), 
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 1), map_entry(0, 18), 
-            map_entry(1, 1), map_entry(0, 9), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 8), map_entry(0, 1), 
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 1), map_entry(0, 27), 
-            map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 8), map_entry(0, 1), 
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 1), map_entry(0, 17), 
-            map_entry(1, 1), map_entry(0, 9), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 6), 
-            map_entry(1, 1), map_entry(0, 26), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), 
-            map_entry(1, 1), map_entry(0, 8), map_entry(1, 17), map_entry(0, 8), 
-            map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), 
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1), map_entry(0, 11), 
-            map_entry(1, 1), map_entry(0, 9), map_entry(1, 1), map_entry(0, 4), 
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1), map_entry(0, 5), 
-            map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 11), map_entry(1, 1), map_entry(0, 6), 
-            map_entry(1, 1), map_entry(0, 16), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1), map_entry(0, 8), 
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1), map_entry(0, 4), 
-            map_entry(1, 1), map_entry(0, 8), map_entry(1, 1), map_entry(0, 4), 
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 5), map_entry(0, 6), 
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 1), map_entry(0, 4), 
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1), map_entry(0, 4), 
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1), map_entry(0, 4), 
-            map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1), map_entry(0, 4), 
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1), map_entry(0, 4), 
-            map_entry(1, 9), map_entry(0, 7), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 8), map_entry(0, 1), 
-            map_entry(1, 17), map_entry(0, 4), map_entry(1, 8), map_entry(0, 4), 
-            map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 1), map_entry(1, 7), map_entry(0, 4), 
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1), map_entry(0, 4), 
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1), map_entry(0, 4), 
-            map_entry(1, 1), map_entry(0, 4), map_entry(1, 1)
-        ],
-        array![
-            map_entry(1, 1), map_entry(0, 7), map_entry(1, 4), map_entry(0, 8), 
-            map_entry(1, 8), map_entry(0, 4), map_entry(1, 1)
-        ],
-    ], 21, 35)
+            array![map_entry(1, 35)],
+            array![
+                map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 11), map_entry(1, 7), map_entry(0, 7), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 7), map_entry(1, 7), map_entry(0, 1), map_entry(1, 5), map_entry(0, 1), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 7), map_entry(1, 1), map_entry(0, 11), map_entry(1, 1), map_entry(0, 1), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 1), map_entry(1, 7), map_entry(0, 1), map_entry(1, 1), map_entry(0, 1), map_entry(1, 1), map_entry(0, 1), map_entry(1, 11), map_entry(0, 1), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 9), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 5), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 5), map_entry(1, 3), map_entry(0, 1), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 1), map_entry(1, 7), map_entry(0, 1), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 1), map_entry(1, 7), map_entry(0, 1), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 15), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 1), map_entry(1, 7), map_entry(0, 1), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 3), map_entry(1, 1), map_entry(0, 9), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 3), map_entry(1, 3), map_entry(0, 1), map_entry(1, 21), map_entry(0, 1), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 3), map_entry(1, 1), map_entry(0, 3), map_entry(1, 1), map_entry(0, 5), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 5), map_entry(1, 1), map_entry(0, 1), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 3), map_entry(1, 1), map_entry(0, 3), map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), map_entry(1, 1), map_entry(0, 1), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 11), map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), map_entry(1, 1), map_entry(0, 7), map_entry(1, 1), map_entry(0, 5), map_entry(1, 1), map_entry(0, 1), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 3), map_entry(1, 1), map_entry(0, 3), map_entry(1, 1), map_entry(0, 3), map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 9), map_entry(1, 1), map_entry(0, 3), map_entry(1, 1), map_entry(0, 1), map_entry(1, 1), map_entry(0, 1), map_entry(1, 1)
+            ],
+            array![
+                map_entry(1, 1), map_entry(0, 3), map_entry(1, 1), map_entry(0, 3), map_entry(1, 1), map_entry(0, 3), map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), map_entry(1, 1), map_entry(0, 11), map_entry(1, 1), map_entry(0, 3), map_entry(1, 1)
+            ],
+            // array![
+            //     map_entry(1, 1), map_entry(0, 3), map_entry(1, 2), map_entry(0, 1), map_entry(1, 2), map_entry(0, 3), map_entry(1, 1), map_entry(0, 1), map_entry(1, 3), map_entry(0, 1), map_entry(1, 1), map_entry(0, 7), map_entry(1, 7), map_entry(0, 1), map_entry(1, 1)
+            // ],
+            // // array![
+            // //     map_entry(1, 1), map_entry(0, 3), map_entry(1, 1), map_entry(0, 9), map_entry(1, 3), map_entry(0, 1), map_entry(1, 1), map_entry(0, 15), map_entry(1, 1)
+            // // ],
+            array![map_entry(1, 35)]
+        ], 21, 35)
 }
 
 
