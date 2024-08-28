@@ -44,8 +44,8 @@ mod game_system {
                 player_address: get_caller_address(),
                 score: 0,
                 state: true,
-                pos_x: 15,
-                pos_y: 4,
+                pos_x: 3,
+                pos_y: 3,
                 freeze: 0,
                 health: 100,
             };
@@ -60,12 +60,20 @@ mod game_system {
             let mut game = store.get_game(game_id);
             assert(game.state, 'Game is not available');
 
+            let mut pos_x = 0;
+            let mut pos_y = 0;
             if game.player_2_address.is_zero() {
                 game.player_2_address = get_caller_address();
+                pos_x = 2;
+                pos_y = 18;
             } else if game.player_3_address.is_zero() {
                 game.player_3_address = get_caller_address();
+                pos_x = 31;
+                pos_y = 6;
             } else if game.player_4_address.is_zero() {
                 game.player_4_address = get_caller_address();
+                pos_x = 23;
+                pos_y = 16;
             } else {
                 assert(false, 'Game is full');
             }
@@ -76,8 +84,8 @@ mod game_system {
                 player_address: get_caller_address(),
                 score: 0,
                 state: true,
-                pos_x: 18,
-                pos_y: 4,
+                pos_x: pos_x,
+                pos_y: pos_y,
                 freeze: 0,
                 health: 100,
             };
@@ -128,7 +136,7 @@ mod game_system {
             let mut player = store.get_player(game_id, get_caller_address());
             assert(player.state, 'Player is not available');
 
-            assert(player.freeze > 0, 'Player is frozen');
+            assert(player.freeze == 0, 'Player is frozen');
             
             self.attack_player(ref store, game_id, ref player, game.player_1_address);
             self.attack_player(ref store, game_id, ref player, game.player_2_address);
@@ -197,7 +205,7 @@ mod game_system {
         ) {
             let mut player = store.get_player(game_id, player_address);
             
-            if current_player.player_address != player_address && 
+            if current_player.player_address != player_address && player.state &&
                 self.player_in_attack_range(current_player.pos_x, current_player.pos_y, player.pos_x, player.pos_y)
             {
                 if player.health <= 10 {
