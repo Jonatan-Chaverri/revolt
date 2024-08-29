@@ -208,11 +208,11 @@ mod game_system {
             if current_player.player_address != player_address && player.state &&
                 self.player_in_attack_range(current_player.pos_x, current_player.pos_y, player.pos_x, player.pos_y)
             {
-                if player.health <= 10 {
+                if player.health <= 20 {
                     player.state = false;
                     player.health = 0;
                 } else {
-                    player.health -= 10;
+                    player.health -= 20;
                 }
                 current_player.score += 10;
                 store.set_player(player);
