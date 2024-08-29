@@ -1,0 +1,4 @@
+tag = "revolt-game_system"
+writes = [
+    "ns:revolt"
+]
