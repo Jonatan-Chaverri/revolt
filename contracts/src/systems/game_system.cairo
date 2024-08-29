@@ -65,7 +65,7 @@ mod game_system {
             if game.player_2_address.is_zero() {
                 game.player_2_address = get_caller_address();
                 pos_x = 2;
-                pos_y = 18;
+                pos_y = 17;
             } else if game.player_3_address.is_zero() {
                 game.player_3_address = get_caller_address();
                 pos_x = 31;
