@@ -16,8 +16,8 @@ telegram = "https://t.me/dojoengine"
 default = "revolt"
 
 [env]
-rpc_url = "https://api.cartridge.gg/x/revolt/katana"
+rpc_url = "https://api.cartridge.gg/x/revolt-test/katana"
 # Default account for katana with seed = 0
-account_address = "0x6d27f924146a521e8e7d3d248fc40648b86e0033528d71323042344600efe7b"
-private_key = "0x7ed0caf9d108bc448b57b9e9b637b8af8fec78069afaff7bcddcd7dc3555c75"
+account_address = "0x1b5983b55bb49ad5d2e588b417bd0aee770a70f36dd9e34384adccbb21a900c"
+private_key = "0xf4f685ebc172209ebb480ff536a02ef83ff5d4ed354e65b3e65bbf006a1b0a"
 world_address = "0x6dc9d3d55f4cace6dfda9dd3478ec7ab60a1637149f8ff430efcd313635492"  # Uncomment and update this line with your world address.
